@@ -14,3 +14,7 @@ router.get('/about', (req, res) => {
 router.get('/faq', (req, res) => {
   res.render('home/faq');
 });
+
+router.get('/game', (req, res) => {
+  res.render('home/hangman');
+});
