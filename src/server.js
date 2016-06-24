@@ -3,6 +3,8 @@ import compression from 'compression';
 import bodyParser from 'body-parser';
 import path from 'path';
 import logger from './config/logging';
+
+
 require('./config/database');
 
 logger.log('info', '[WINSTON] - log level: %s', process.env.LEVEL);
@@ -18,11 +20,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const port = process.env.PORT || 3333;
 
+// const myWord = Word.getWord();
+// console.log(myWord);
+
 app.listen(port, () => {
   logger.log('info', '[EXPRESS] - listening port: %d', port);
 });
 
 app.use('/', require('./controllers/home'));
 app.use('/games', require('./controllers/games'));
+
 
 module.exports = app;

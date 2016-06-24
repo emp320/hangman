@@ -3,13 +3,18 @@
 import express from 'express';
 const router = module.exports = express.Router();
 import Game from '../models/game';
+import Word from '../models/word';
 
 router.post('/', (req, res) => {
+   const word = Word.getWord();
+   console.log(word);
   const g = new Game(req.body);
+  g.word = word;
   g.save(() => {
     res.send(g);
   });
 });
+
 
 router.put('/:id/flip', (req, res) => {
   Game.findById(req.params.id, (err, game) => {

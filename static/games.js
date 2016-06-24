@@ -7,14 +7,15 @@ function init() {
   }
 
   function newgame(){
-  const name = $('#txtName').val();
-  $.ajax({
-    url: '/games',
-    method: 'post',
-    dataType: 'json',
-    data: { name },
-    success: function(rsp){
-    console.log(rsp);
-    }
-  });
+    const name = $('#txtName').val();
+
+    $.ajax({
+      url: '/games',
+      method: 'post',
+      dataType: 'json',
+      data: { name },
+      success: function(rsp){
+      console.log(rsp);
+      }
+    });
 }

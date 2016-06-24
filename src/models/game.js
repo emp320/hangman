@@ -13,4 +13,5 @@ const gameSchema = new Schema({
   didWin: { type: Boolean, default: false },
 });
 
+
 module.exports = mongoose.model('Game', gameSchema);
