@@ -4,17 +4,27 @@ import express from 'express';
 const router = module.exports = express.Router();
 import Game from '../models/game';
 import Word from '../models/word';
+import GameViewModel from '../models/GameViewModel';
 
 router.post('/', (req, res) => {
    const word = Word.getWord();
-   console.log(word);
+   const l = word.length;
+   console.log(`WORD: ${word} LENGTH: ${l}`);
   const g = new Game(req.body);
   g.word = word;
+  g.timeLeft = 999;
+  const gvm =
+    new GameViewModel(
+      g.name,
+      g.timeLeft,
+      l,
+      g.guesses,
+      g.didWin);
+
   g.save(() => {
-    res.send(g);
+    res.send(gvm);
   });
 });
-
 
 router.put('/:id/flip', (req, res) => {
   Game.findById(req.params.id, (err, game) => {
